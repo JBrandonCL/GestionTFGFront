@@ -1,0 +1,42 @@
+<div class="container my-5">
+    <div class="card border-primary shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+            <h4>Detalles de la multa</h4>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <h5 class="card-title text-primary">Dirección de envío</h5>
+                    <p class="card-text">{{ fineDetails?.direction }}</p>
+                    <p class="card-text">{{ fineDetails?.zipCode }}</p>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="card-title text-primary">Detalles del vehículo</h5>
+                    <p class="card-text"><strong>Placa:</strong> {{ fineDetails?.vehicle?.linces_plate }}</p>
+                    <p class="card-text"><strong>Chasis:</strong> {{ fineDetails?.vehicle?.chassis }}</p>
+                    <p class="card-text"><strong>Marca:</strong> {{ fineDetails?.vehicle?.mark }}</p>
+                    <p class="card-text"><strong>Modelo:</strong> {{ fineDetails?.vehicle?.model }}</p>
+                    <p class="card-text"><strong>Año:</strong> {{ fineDetails?.vehicle?.year }}</p>
+                    <p class="card-text"><strong>Color:</strong> {{ fineDetails?.vehicle?.colour }}</p>
+                    <p class="card-text"><strong>Tipo de vehículo:</strong> {{ fineDetails?.vehicle?.type_Vehicle }}</p>
+                    <p class="card-text"><strong>Registro:</strong> {{ fineDetails?.vehicle?.registration_document ? 'Registrado' : 'No registrado' }}</p>
+                    <p class="card-text"><strong>Seguro:</strong> {{ fineDetails?.vehicle?.insurance ? 'Con seguro' : 'Sin seguro' }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <h5 class="card-title text-primary">Detalles de la multa</h5>
+                    <p class="card-text"><strong>Número de identificación del policía:</strong> {{ fineDetails?.police_identification }}</p>
+                    <p class="card-text"><strong>Razón:</strong> {{ fineDetails?.reason }}</p>
+                    <p class="card-text"><strong>Fecha:</strong> {{ fineDetails?.createdAt }}</p>
+                    <p class="card-text"><strong>Número de referencia:</strong> {{ fineDetails?.referenceNumber }}</p>
+                    <p class="card-text"><strong>Estado:</strong> {{ fineDetails?.paid ? 'Pagada' : 'Sin pagar' }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            <button class="btn btn-primary" (click)="downloadPDF()">Descargar PDF</button>
+            <button class="btn btn-secondary" routerLink="/fines">Volver al listado</button>
+        </div>
+    </div>
+</div>

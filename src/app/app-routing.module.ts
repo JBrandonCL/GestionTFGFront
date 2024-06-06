@@ -1,7 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
+import { LoginComponent } from './authentication/login/login.component';
+import { RegisterComponent } from './authentication/register/register.component';
+import { FinesComponent } from './users/fines/fines/fines.component';
+import { DetailsFinesComponent } from './users/detailsFines/details-fines/details-fines.component';
+import { VehiclesComponent } from './users/vehicles/vehicles.component';
+import { VehiclesDetailsComponent } from './users/vehicles-details/vehicles-details.component';
 
-const routes: Routes = [];
+const routes: Routes =[
+  //{ path: "", component: AppComponent, pathMatch: "full" },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: "login", component: LoginComponent, pathMatch: "full" },
+  { path: "register", component: RegisterComponent, pathMatch: "full" },
+  { path: "fines" , component:FinesComponent, pathMatch: "full"},
+  { path: "fines/finesDetails/:fineId" , component:DetailsFinesComponent, pathMatch: "full"},
+  { path: "vehicles" , component:VehiclesComponent, pathMatch: "full"},
+  { path: "vehicles/vehicleDetails/:linces_plate" , component:VehiclesDetailsComponent, pathMatch: "full"},
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

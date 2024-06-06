@@ -1,0 +1,25 @@
+<div class="container-fluid">
+<div class="row">
+  <div class="col-xl-6 mb-4" *ngFor="let fine of fines">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center">
+            <div class="ms-3">
+              <p class="fw-bold mb-1">Motivo de la multa : {{fine.reason}}</p>
+              <p class="text-muted mb-0">Fecha de la multa : {{fine.createdAt | date:'short' }}</p>
+            </div>
+          </div>
+          <span class="badge bg-success text-white">@if(fine.isPaid==false){Sin Pagar}@else {Pagada}</span>
+        </div>
+      </div>
+      <div class="card-footer border-0 bg-body p-2 d-flex justify-content-around">
+        <a href="#" class="btn btn-link m-0 text-reset" role="button" data-ripple-color="primary"
+          data-mdb-ripple-init>Reclamar<i class="fas fa-envelope ms-2"></i></a>
+        <a [routerLink]="['finesDetails',fine.fineId]" class="btn btn-link m-0 text-reset" role="button" data-ripple-color="primary"
+          data-mdb-ripple-init>Detalles de la multa<i class="fas fa-phone ms-2"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
