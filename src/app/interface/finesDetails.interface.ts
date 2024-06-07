@@ -1,5 +1,5 @@
 /**
- * Consta de createdAt,fineId,id,isPaid,reason,userId
+ * Consta de createdAt,fineId,id,isPaid,reason,userId,finesImport
  */
 export interface FinesDetailsInterface {
     direction: string;
@@ -20,4 +20,6 @@ export interface FinesDetailsInterface {
     paid: boolean;
     createdAt: Date;
     referenceNumber: string;
+    finesImport: number;
+    description: string;
 }

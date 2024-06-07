@@ -29,4 +29,16 @@ export class FinesComponent implements OnInit{
       });
       };
     }
+    downloadPDF(fineId:string): void {
+      this.finesService.downloadPDF(fineId).subscribe((data: Blob) => {
+        const downloadURL = window.URL.createObjectURL(data);
+        var date= new Date().toISOString().slice(0, 10).replace(/-/g, "");
+        const link = document.createElement('a');
+        link.href = downloadURL;
+        link.download = 'multa-'+date+'.pdf';
+        link.click();
+      }, (error) => {
+        console.error('Download failed:', error);
+      });
+    }
 }

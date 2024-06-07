@@ -1,0 +1,48 @@
+<div class="container my-5">
+    <div class="card border-primary shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+            <h4>Registrar Nueva Multa</h4>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="ticketForm" (ngSubmit)="submit()">
+                <div class="mb-3">
+                    <label for="reason" class="form-label text-primary">Razón</label>
+                    <input type="text" class="form-control" id="reason" name="reason" formControlName="reason" />
+                    <div *ngIf="ticketForm.get('reason')?.touched">
+                        <span *ngIf="ticketForm.get('reason')?.hasError('required')" class="text-danger">
+                            (Es necesario proprocionar una razon de Multa)
+                        </span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label text-primary">Descripción</label>
+                    <textarea class="form-control" id="description" name="description" rows="4"
+                        formControlName="description"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="vehicle" class="form-label text-primary">Matricula del Vehículo</label>
+                    <input type="text" class="form-control" id="vehicle" name="vehicle" formControlName="vehicle">
+                    <div *ngIf="ticketForm.get('vehicle')?.touched">
+                        <span *ngIf="ticketForm.get('vehicle')?.hasError('required')" class="text-danger">
+                            (Es necesario proprocionar una Matricula de Vehículo)
+                        </span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="finesImport" class="form-label text-primary">Importe de la Multa</label>
+                    <input type="number" class="form-control" id="finesImport" name="finesImport"
+                        formControlName="finesImport">
+                    <div *ngIf="ticketForm.get('finesImport')?.touched">
+                        <span *ngIf="ticketForm.get('finesImport')?.hasError('required')" class="text-danger">
+                            (Es necesario indicar un importe)
+                        </span>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Registrar Multa</button>
+                    <button type="button" class="btn btn-secondary" routerLink="/fines">Volver al listado</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

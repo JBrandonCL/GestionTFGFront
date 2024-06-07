@@ -20,7 +20,7 @@
                       <label class="form-label" for="userNameOrEmail">Username or Email</label>
                       <input type="text" id="userNameOrEmail" class="form-control" placeholder="Usuario o Email" formControlName= "userNameOrEmail"/>
                       <div *ngIf="LoginForm.get('userNameOrEmail')?.touched">
-                        <span *ngIf="LoginForm.get('userNameOrEmail')?.hasError('required')">
+                        <span *ngIf="LoginForm.get('userNameOrEmail')?.hasError('required')" class="alert alert-danger">
                           (Es necesario proprocionar un usuario o email)
                         </span>
                       </div>
@@ -53,7 +53,12 @@
               <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
                 <div class="text-dark px-3 py-4 p-md-5 mx-md-4">
                   <h4 class="mb-4">We are more than just a company</h4>
-                  <h1>AQUI TENDRIA UNA IMAGEN O UN TEXTO Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi velit iusto dignissimos, facilis molestias nulla voluptate maxime odio optio nesciunt fuga. Sed sint voluptatum quia modi laudantium nostrum deleniti ullam!</h1>
+                  <h1>AQUI TENDRIA UNA IMAGEN O UN TEXTO Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi velit iusto dignissimos, facilis molestias nulla voluptate maxime odio optio nesciunt fuga. Sed sint voluptatum quia modi laudantium nostrum deleniti ullam!
+
+                    Usuarios de inicios de sesion
+                    rol user: nuevo , 123456789
+                    rol police: police.Register , 123456789
+                  </h1>
                 </div>
               </div>
             </div>

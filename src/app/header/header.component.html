@@ -1,22 +1,45 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Gestion</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link"  [routerLink]="['fines']" >Mis Multas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['vehicles']">Mis Vehiculos</a>
-          </li>
-        </ul>
-      </div>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Gestion</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+        </li>
+        <!-- Condicional para elementos del usuario logueado -->
+        <ng-container *ngIf="isLoggedIn">
+          <!-- Condicional para el rol de usuario -->
+          <ng-container *ngIf="role === 'USER'">
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['fines']">Mis Multas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['vehicles']">Mis Vehiculos</a>
+            </li>
+          </ng-container>
+          <!-- Condicional para el rol de policía -->
+          <ng-container *ngIf="role === 'POLICE'">
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['agent/fines']">Ver mis multas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['agent/postfine']">Poner una multa</a>
+            </li>
+          </ng-container>
+        </ng-container>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a class="nav-link" href="#">{{name}}</a>
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <button class="btn btn-outline-danger" (click)="logout()">Cerrar Sesión</button>
+        </li>
+      </ul>
     </div>
-  </nav>
-  
+  </div>
+</nav>

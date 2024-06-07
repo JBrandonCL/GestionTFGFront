@@ -13,10 +13,15 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit{
   erros: string = '';
   router = inject(Router);
+  
   constructor(private authService:AuthService,private storateService:StorageService){}
   ngOnInit(): void {
     if (this.storateService.isLoggedIn()) {
-      this.router.navigate(['/']);
+      if(this.storateService.getRole() === 'USER')
+      this.router.navigate(['/fines']);
+    else{
+      this.router.navigate(['agent/fines']);
+    }
     }
   }
 
@@ -43,11 +48,14 @@ export class LoginComponent implements OnInit{
         this.authService.login(data).subscribe({
           next: (response) => {
             this.storateService.setToken(response.access_token);
+            this.storateService.setRole(response.role);
+            this.storateService.changeRole(response.role);
+            this.storateService.setName(response.name);
+            this.storateService.changeName(response.name);
             //*****Falta indicar a donde se redirigiria */
             this.router.navigate(['/fines']);
           },
           error: (error) => {
-            console.log(error);
             this.erros = error.error.mensaje;
           }
         });
@@ -60,8 +68,15 @@ export class LoginComponent implements OnInit{
         this.authService.login(data).subscribe({
           next: (response) => {
             this.storateService.setToken(response.access_token);
-            //*****Falta indicar a donde se redirigiria */
+            this.storateService.setRole(response.role);
+            this.storateService.changeRole(response.role);
+            this.storateService.setName(response.name);
+            this.storateService.changeName(response.name);
+            if(response.role === 'USER')
             this.router.navigate(['/fines']);
+          else{
+            this.router.navigate(['agent/fines']);
+          }
           },
           error: (error) => {
             console.log(error);

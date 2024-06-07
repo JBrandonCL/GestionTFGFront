@@ -7,6 +7,8 @@ import { FinesComponent } from './users/fines/fines/fines.component';
 import { DetailsFinesComponent } from './users/detailsFines/details-fines/details-fines.component';
 import { VehiclesComponent } from './users/vehicles/vehicles.component';
 import { VehiclesDetailsComponent } from './users/vehicles-details/vehicles-details.component';
+import { FinesPoliceComponent } from './agent/police/fines-police/fines-police.component';
+import { PostfineComponent } from './agent/police/postfine/postfine.component';
 
 const routes: Routes =[
   //{ path: "", component: AppComponent, pathMatch: "full" },
@@ -17,6 +19,8 @@ const routes: Routes =[
   { path: "fines/finesDetails/:fineId" , component:DetailsFinesComponent, pathMatch: "full"},
   { path: "vehicles" , component:VehiclesComponent, pathMatch: "full"},
   { path: "vehicles/vehicleDetails/:linces_plate" , component:VehiclesDetailsComponent, pathMatch: "full"},
+  { path: "agent/fines" , component:FinesPoliceComponent, pathMatch: "full"},
+  { path: "agent/postfine" , component:PostfineComponent, pathMatch: "full"},
 ];
 
 @NgModule({

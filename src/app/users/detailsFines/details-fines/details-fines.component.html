@@ -31,6 +31,8 @@
                     <p class="card-text"><strong>Fecha:</strong> {{ fineDetails?.createdAt }}</p>
                     <p class="card-text"><strong>Número de referencia:</strong> {{ fineDetails?.referenceNumber }}</p>
                     <p class="card-text"><strong>Estado:</strong> {{ fineDetails?.paid ? 'Pagada' : 'Sin pagar' }}</p>
+                    <p class="card-text"><strong>Importe:</strong> {{ fineDetails?.finesImport }}</p>
+                    <p class="card-text"><strong>Descripcion :</strong> {{ fineDetails?.description?? "No hay descripcion"  }}</p>
                 </div>
             </div>
         </div>

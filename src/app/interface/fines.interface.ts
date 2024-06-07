@@ -8,4 +8,5 @@ export interface FinesInterface {
     isPaid?: boolean;
     createdAt?: string;
     reason?: string;
+    finesImport?: number;
   }
