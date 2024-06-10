@@ -1,0 +1,89 @@
+@if(this.objectoOption==1){
+    <div class="container my-5">
+        <div class="card border-primary shadow-lg">
+            <div class="card-header bg-primary text-white text-center">
+                <h4>Detalles del Vehículo</h4>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <h5 class="card-title text-primary">Detalles del vehículo</h5>
+                    <div class="col-md-4">
+                        <p class="card-text"><strong>Placa:</strong> {{ vehicleDetails?.license_plate }}</p>
+                        <p class="card-text"><strong>Chasis:</strong> {{ vehicleDetails?.chassis }}</p>
+                        <p class="card-text"><strong>Marca:</strong> {{ vehicleDetails?.mark }}</p>
+                    </div>
+                        <div class="col-md-4">
+                        <p class="card-text"><strong>Modelo:</strong> {{ vehicleDetails?.model }}</p>
+                        <p class="card-text"><strong>Año:</strong> {{ vehicleDetails?.year }}</p>
+                        <p class="card-text"><strong>Color:</strong> {{ vehicleDetails?.colour }}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="card-text"><strong>Tipo de vehículo:</strong> {{ vehicleDetails?.type_Vehicle }}</p>
+                        <p class="card-text"><strong>Registro:</strong> {{ vehicleDetails?.registration_document ? 'Registrado' : 'No registrado' }}</p>
+                        <p class="card-text"><strong>Seguro:</strong> {{ vehicleDetails?.insurance ? 'Con seguro' : 'Sin seguro' }}</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="card-title text-primary">Información del Propietario</h5>
+                        <p class="card-text"><strong>Nombre del dueño:</strong> {{vehicleDetails?.name_owner}}</p>
+                        <p class="card-text"><strong>DNI del dueño:</strong> {{vehicleDetails?.dni_owner}}</p>
+                        <p class="card-text"><strong>Dueño con multas:</strong> 
+                            <span *ngIf="vehicleDetails?.userFines"> Si</span>
+                            <span *ngIf="!vehicleDetails?.userFines"> No</span>
+                        </p>
+                        <p class="card-text"><strong>Numero total de multas asociadas al vehiculo:</strong> {{totalFines>0?totalFines:"Este vehiculo no cuenta con multas asociadas"}}</p>
+                    </div>
+                </div>
+                <hr>    
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="card-title text-primary">Multas asociadas</h5>
+                        <app-datas-fines  [fines]="fines" [option]="objectoOption"></app-datas-fines>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+}
+@if(this.objectoOption==2){
+    <div class="container my-5">
+        <div class="card border-primary shadow-lg">
+            <div class="card-header bg-primary text-white text-center">
+                <h4>Información sobre una Persona</h4>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <h5 class="card-title text-primary">Detalles de la persona</h5>
+                    <div class="col-md-4">
+                        <p class="card-text"><strong>Nombre:</strong> {{ userDetails?.name }}</p>
+                        <p class="card-text"><strong>Primer Apellido:</strong> {{ userDetails?.lastname1 }}</p>
+                        <p class="card-text"><strong>Segundo Apellido:</strong> {{ userDetails?.lastname2 }}</p>
+                    </div>
+                        <div class="col-md-4">
+                        <p class="card-text"><strong>DNI:</strong> {{ userDetails?.dni }}</p>
+                        <p class="card-text"><strong>Dirrección:</strong> {{ userDetails?.direction }}</p>
+                        <p class="card-text"><strong>Codigo Postal:</strong> {{ userDetails?.zipcode }}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="card-text"><strong>Ciudad:</strong> {{ userDetails?.town }}</p>
+                        <p class="card-text"><strong>Tiene multas: </strong> {{ userDetails?.hasFines ? 'Posee multas' : 'No posee ninguna multa' }}</p>
+                        <p class="card-text"><strong>Correo electronico:</strong> {{ userDetails?.email }}</p>
+                    </div>
+                </div>
+                <hr>    
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="card-title text-primary">Multas asociadas</h5>
+                        <app-datas-fines  [fines]="fines" [option]="objectoOption"></app-datas-fines>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+}

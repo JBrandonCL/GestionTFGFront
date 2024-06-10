@@ -9,6 +9,7 @@ import { VehiclesComponent } from './users/vehicles/vehicles.component';
 import { VehiclesDetailsComponent } from './users/vehicles-details/vehicles-details.component';
 import { FinesPoliceComponent } from './agent/police/fines-police/fines-police.component';
 import { PostfineComponent } from './agent/police/postfine/postfine.component';
+import { SearchInfoUserComponent } from './agent/police/search-info-user/search-info-user.component';
 
 const routes: Routes =[
   //{ path: "", component: AppComponent, pathMatch: "full" },
@@ -21,6 +22,8 @@ const routes: Routes =[
   { path: "vehicles/vehicleDetails/:linces_plate" , component:VehiclesDetailsComponent, pathMatch: "full"},
   { path: "agent/fines" , component:FinesPoliceComponent, pathMatch: "full"},
   { path: "agent/postfine" , component:PostfineComponent, pathMatch: "full"},
+  { path: "agent/fines/finesDetails/:fineId" , component:DetailsFinesComponent, pathMatch: "full"},
+  { path: "agent/info" , component:SearchInfoUserComponent, pathMatch: "full"},
 ];
 
 @NgModule({

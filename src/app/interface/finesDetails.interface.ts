@@ -22,4 +22,14 @@ export interface FinesDetailsInterface {
     referenceNumber: string;
     finesImport: number;
     description: string;
+    usuario?:{
+        name: string;
+        lastname1: string;
+        lastname2: string;
+        dni: string;
+        direction: string;
+        zipcode: string;
+        town: string;
+        email: string;
+    }
 }

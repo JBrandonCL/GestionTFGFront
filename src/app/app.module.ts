@@ -18,6 +18,8 @@ import { VehiclesComponent } from './users/vehicles/vehicles.component';
 import { VehiclesDetailsComponent } from './users/vehicles-details/vehicles-details.component';
 import { FinesPoliceComponent } from './agent/police/fines-police/fines-police.component';
 import { PostfineComponent } from './agent/police/postfine/postfine.component';
+import { SearchInfoUserComponent } from './agent/police/search-info-user/search-info-user.component';
+import { DatasFinesComponent } from './agent/datas-fines/datas-fines.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { PostfineComponent } from './agent/police/postfine/postfine.component';
     VehiclesComponent,
     VehiclesDetailsComponent,
     FinesPoliceComponent,
-    PostfineComponent, 
+    PostfineComponent,
+    SearchInfoUserComponent,
+    DatasFinesComponent, 
   ],
   imports: [
     BrowserModule,

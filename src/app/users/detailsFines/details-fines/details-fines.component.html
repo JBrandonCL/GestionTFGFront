@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
+                <div class="col-6">
                     <h5 class="card-title text-primary">Detalles de la multa</h5>
                     <p class="card-text"><strong>Número de identificación del policía:</strong> {{ fineDetails?.police_identification }}</p>
                     <p class="card-text"><strong>Razón:</strong> {{ fineDetails?.reason }}</p>
@@ -34,11 +34,26 @@
                     <p class="card-text"><strong>Importe:</strong> {{ fineDetails?.finesImport }}</p>
                     <p class="card-text"><strong>Descripcion :</strong> {{ fineDetails?.description?? "No hay descripcion"  }}</p>
                 </div>
+                @if(role=="police"){
+                    <div class="col-6">
+                        <h5 class="card-title text-primary">Detalles del Infractor</h5>
+                        <p class="card-text"><strong>Nombre:</strong> {{ fineDetails?.usuario?.name}} {{ fineDetails?.usuario?.lastname1 }} {{ fineDetails?.usuario?.lastname2 }}</p>
+                        <p class="card-text"><strong>Número de identificación:</strong> {{ fineDetails?.usuario?.dni }}</p>
+                        <p class="card-text"><strong>Dirección:</strong> {{ fineDetails?.usuario?.direction }}</p>
+                        <p class="card-text"><strong>Código postal:</strong> {{ fineDetails?.usuario?.zipcode }}</p>
+                        <p class="card-text"><strong>Ciudad:</strong> {{ fineDetails?.usuario?.town }}</p>
+                        <p class="card-text"><strong>Email:</strong> {{ fineDetails?.usuario?.email }}</p>
+                      </div>
+                }
             </div>
         </div>
         <div class="card-footer text-center">
             <button class="btn btn-primary" (click)="downloadPDF()">Descargar PDF</button>
+            @if(role!="police"){
             <button class="btn btn-secondary" routerLink="/fines">Volver al listado</button>
+            }@else{
+            <button class="btn btn-secondary" routerLink="/agent/fines">Volver al listado</button>
+            }
         </div>
     </div>
 </div>

@@ -10,6 +10,7 @@ import { FinesDetailsInterface } from '../../../interface/finesDetails.interface
   styleUrl: './details-fines.component.scss'
 })
 export class DetailsFinesComponent implements OnInit{
+  role:string="";
   fineDetails: FinesDetailsInterface | null = null;
   router = inject(Router);
   fineId: string;
@@ -21,19 +22,29 @@ export class DetailsFinesComponent implements OnInit{
     //Si no tiene iniciada una sesión se le redirige al login
     if (!this.storateService.isLoggedIn()) {
       this.router.navigate(['/']);
-    }else {
-      this.finesService.getDetailFine(this.fineId).subscribe({
+    } else {
+      this.finesService.getDetailGestion(this.fineId).subscribe({
         next: (response) => {
+          console.log("ENTRA COMO AGENTE");
           this.fineDetails = response;
-          console.log(this.fineDetails);
+          this.role="police"
         },
         error: (error) => {
-          alert('Error al cargar las multas');
-          this.router.navigate(['/fines']);
+          this.finesService.getDetailFine(this.fineId).subscribe({
+            next: (response) => {
+              this.role="user"
+              this.fineDetails = response;
+              console.log("ENTRA COMO USUARIO");
+            },
+            error: (error) => {
+              alert('Error al cargar las multas');
+              this.router.navigate(['/fines']);
+            }
+          });
         }
       });
+    }
   }
-}
   downloadPDF(): void {
     this.finesService.downloadPDF(this.fineId).subscribe((data: Blob) => {
       const downloadURL = window.URL.createObjectURL(data);

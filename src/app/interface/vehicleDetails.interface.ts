@@ -10,4 +10,7 @@ export class VehicleDetailsInterface {
     insurance?: boolean;
     insurance_lastDate?: Date;
     purchase_Date?: Date;
+    dni_owner?: string;
+    name_owner?: string;
+    userFines?:boolean;
   }

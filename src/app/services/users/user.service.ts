@@ -18,10 +18,4 @@ export class UserService {
   public getDetailVehicle(id: string):Observable<any> {
     return this.http.get(environment.apiUrl + "/vehicles/details/" + id,httpOptions);
   }
-  public validateRol():Observable<any> {
-    return this.http.get(environment.apiUrl + "/police/validate/rol",httpOptions);
-  }
-  public postFine(postFine:PostFineDto):Observable<any> {
-    return this.http.post(environment.apiUrl + "/police/ticket", postFine,httpOptions);
-  }
 }

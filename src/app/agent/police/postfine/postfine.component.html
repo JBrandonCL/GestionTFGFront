@@ -3,6 +3,9 @@
         <div class="card-header bg-primary text-white text-center">
             <h4>Registrar Nueva Multa</h4>
         </div>
+        <div *ngIf="erros" class="alert alert-danger error-message" role="alert">
+            {{ erros }}
+          </div>
         <div class="card-body">
             <form [formGroup]="ticketForm" (ngSubmit)="submit()">
                 <div class="mb-3">
@@ -11,6 +14,9 @@
                     <div *ngIf="ticketForm.get('reason')?.touched">
                         <span *ngIf="ticketForm.get('reason')?.hasError('required')" class="text-danger">
                             (Es necesario proprocionar una razon de Multa)
+                        </span>
+                        <span *ngIf="ticketForm.get('reason')?.hasError('minlength')" class="text-danger">
+                            (Es necesario proprocionar al menos una razon de 3 caracteres)
                         </span>
                     </div>
                 </div>

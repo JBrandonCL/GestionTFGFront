@@ -11,7 +11,6 @@ export class FinesService {
   constructor(private http: HttpClient) { }
 
   public getFines():Observable<any> {
-    console.log(this.url);
     return this.http.get(this.url);
   }
   public getDetailFine(id: string):Observable<any> {
@@ -19,5 +18,11 @@ export class FinesService {
   }
   public downloadPDF(id: string): Observable<Blob> {
     return this.http.get(environment.apiUrl + "/ticket/pdf/download/" + id, { responseType: 'blob' });
+  }
+  public getDetailGestion(id: string):Observable<any> {
+    return this.http.get(environment.apiUrl + "/ticket/fine/gestion/" + id);
+  }
+  public getFinesUser(id: string):Observable<any> {
+    return this.http.get(environment.apiUrl + "/users/fines/" + id);
   }
 }

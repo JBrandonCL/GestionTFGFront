@@ -29,6 +29,23 @@
             <li class="nav-item">
               <a class="nav-link" [routerLink]="['agent/postfine']">Poner una multa</a>
             </li>
+            <li class="nav-item d-flex align-items-center">
+              <form (ngSubmit)="submit()" class="d-flex align-items-center"[formGroup]="SearchForm" >
+                <label for="dadw" class="form-label me-2 mb-0">Buscador:</label>
+                <select class="form-select me-2" id="Value"formControlName= "Value">
+                  <option value="0" [selected]="1">Opciones de busqueda</option>
+                  <option value="1">Informacion vehiculo</option>
+                  <option value="2">Informacion persona</option>
+                  <option value="3">Informacion multa</option>
+                </select>
+                <input type="text" class="form-control me-2" id="Search" placeholder="Buscar..." aria-label="Search"
+                  aria-describedby="button-addon5" formControlName= "Search">
+                  <button  type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-danger">Buscar</button>
+              </form>
+              <div *ngIf="erros" class="ms-5 alert-danger text-danger" role="alert">
+                {{ erros }}
+              </div>
+            </li>
           </ng-container>
         </ng-container>
       </ul>

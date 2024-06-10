@@ -1,10 +1,10 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { UserService } from '../../../services/users/user.service';
 import { StorageService } from '../../../services/storage/storage.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PostFineDto } from '../../../interface/postFine.interface';
+import { AdministrationService } from '../../../services/administration/administration.service';
 
 @Component({
   selector: 'app-postfine',
@@ -14,13 +14,13 @@ import { PostFineDto } from '../../../interface/postFine.interface';
 export class PostfineComponent implements OnInit {
   router = inject(Router);
   erros: string = '';
-  constructor(private readonly userService:UserService, private readonly storateService:StorageService ,private location: Location) { }
+  constructor(private readonly administrationService:AdministrationService, private readonly storateService:StorageService ,private location: Location) { }
 
   ngOnInit(): void {
     if(!this.storateService.isLoggedIn()){
       this.router.navigate(['/login']);
     }else{
-      this.userService.validateRol().subscribe({
+      this.administrationService.validateRol().subscribe({
         error: () => {
           this.location.back();
         }
@@ -28,7 +28,7 @@ export class PostfineComponent implements OnInit {
     }
   }
   ticketForm = new FormGroup({
-    reason: new FormControl('', [Validators.required]),
+    reason: new FormControl('', [Validators.required,Validators.minLength(3),Validators.pattern(`^\\s*\\S{${3},}\\s*$`)]),
     description: new FormControl(''),
     vehicle: new FormControl('', [Validators.required]),
     finesImport: new FormControl('', [Validators.required]),
@@ -49,13 +49,13 @@ export class PostfineComponent implements OnInit {
       }
       fine.vehicle=data.vehicle;
       fine.finesImport=data.finesImport;
-      this.userService.postFine(data).subscribe({
+      this.administrationService.postFine(data).subscribe({
         next: () => {
           this.router.navigate(['/agent/fines']);
         },
         error: (error) => {
           console.log(error);
-          this.erros = error.error.mensaje;
+          this.erros = error.error.message;
         }
       });
     }
