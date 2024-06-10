@@ -10,6 +10,7 @@ import { VehiclesDetailsComponent } from './users/vehicles-details/vehicles-deta
 import { FinesPoliceComponent } from './agent/police/fines-police/fines-police.component';
 import { PostfineComponent } from './agent/police/postfine/postfine.component';
 import { SearchInfoUserComponent } from './agent/police/search-info-user/search-info-user.component';
+import { UpdateFineComponent } from './agent/update-fine/update-fine.component';
 
 const routes: Routes =[
   //{ path: "", component: AppComponent, pathMatch: "full" },
@@ -24,6 +25,7 @@ const routes: Routes =[
   { path: "agent/postfine" , component:PostfineComponent, pathMatch: "full"},
   { path: "agent/fines/finesDetails/:fineId" , component:DetailsFinesComponent, pathMatch: "full"},
   { path: "agent/info" , component:SearchInfoUserComponent, pathMatch: "full"},
+  { path: "agent/fines/update/:fineId" , component:UpdateFineComponent, pathMatch: "full"},
 ];
 
 @NgModule({

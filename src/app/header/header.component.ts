@@ -73,17 +73,8 @@ export class HeaderComponent implements OnInit {
         });
          break; }
         case 3 : {  
-          this.administrationService.getFineDetails(toSearch).subscribe({
-            next: (data) => {
-              this.administrationService._dataObjectSet = data;
-              this.administrationService._dataOptionSet = 3;
-              this.router.navigate(['/agent/info']);
-            },
-              error: (error) => {
-                console.log(error);
-                this.erros = error.error.message;
-              }
-        });
+          
+              this.router.navigate(['/agent/fines/finesDetails', toSearch]);
           ; break; }
         default: { console.log('No se selecciono ninguna opcion'); break;}
       }

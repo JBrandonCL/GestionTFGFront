@@ -20,6 +20,9 @@ export class AdministrationService {
   public postFine(postFine:PostFineDto):Observable<any> {
     return this.http.post(environment.apiUrl + "/police/ticket", postFine,httpOptions);
   }
+  public updateFine(id:string,postFine:PostFineDto):Observable<any> {
+    return this.http.patch(environment.apiUrl + "/police/fine/update/" + id,postFine);
+  }
   public getUserDetails(dni:string):Observable<any> {
     return this.http.get(environment.apiUrl + "/police/user/info/"+dni,httpOptions);
   }
@@ -33,7 +36,6 @@ export class AdministrationService {
     return this.http.get(environment.apiUrl + "/police/me/ticket",httpOptions);
   }
   get _dataObjectGet(): any {
-    console.log('get dataObject');
     const data = window.sessionStorage.getItem(this.dataObjectKey);
     return data ? JSON.parse(data) : null;
   }
@@ -43,7 +45,6 @@ export class AdministrationService {
   }
 
   get _dataOptionGet(): any {
-    console.log('get dataOption');
     return window.sessionStorage.getItem(this.dataOptionKey);
   }
 

@@ -25,4 +25,7 @@ export class FinesService {
   public getFinesUser(id: string):Observable<any> {
     return this.http.get(environment.apiUrl + "/users/fines/" + id);
   }
+  public getDetailsFineForUpdate(id: string):Observable<any> {
+    return this.http.get(environment.apiUrl + "/police/fine/update/" + id);
+  }
 }

@@ -20,6 +20,7 @@ import { FinesPoliceComponent } from './agent/police/fines-police/fines-police.c
 import { PostfineComponent } from './agent/police/postfine/postfine.component';
 import { SearchInfoUserComponent } from './agent/police/search-info-user/search-info-user.component';
 import { DatasFinesComponent } from './agent/datas-fines/datas-fines.component';
+import { UpdateFineComponent } from './agent/update-fine/update-fine.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { DatasFinesComponent } from './agent/datas-fines/datas-fines.component';
     FinesPoliceComponent,
     PostfineComponent,
     SearchInfoUserComponent,
-    DatasFinesComponent, 
+    DatasFinesComponent,
+    UpdateFineComponent, 
   ],
   imports: [
     BrowserModule,
