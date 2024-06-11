@@ -23,11 +23,11 @@ export class AdministrationService {
   public updateFine(id:string,postFine:PostFineDto):Observable<any> {
     return this.http.patch(environment.apiUrl + "/police/fine/update/" + id,postFine);
   }
-  public getUserDetails(dni:string):Observable<any> {
-    return this.http.get(environment.apiUrl + "/police/user/info/"+dni,httpOptions);
-  }
-  public getVehicleDetails(license_plate:string):Observable<any> {
-    return this.http.get(environment.apiUrl + "/police/vehicle/info/"+license_plate,httpOptions);
+  public getUserDetails(dni:string, page: number = 1, limit: number = 10): Observable<any> {
+    return this.http.get(`${environment.apiUrl}/police/user/info/${dni}?limit=${limit}&page=${page}`, httpOptions);
+}
+  public getVehicleDetails(license_plate:string,page: number = 1, limit: number = 10):Observable<any> {
+    return this.http.get(environment.apiUrl + "/police/vehicle/info/"+license_plate+"?limit="+limit+"&page="+page,httpOptions);
   }
   public getFineDetails(referenceNumber:string):Observable<any> {
     return this.http.get(environment.apiUrl + "/police/fine/info/"+referenceNumber,httpOptions);

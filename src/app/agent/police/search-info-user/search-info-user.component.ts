@@ -39,16 +39,18 @@ export class SearchInfoUserComponent implements OnInit {
           this.objectoOption = this.administrationService._dataOptionGet;
 
           if(this.objectoOption == 1){
-            console.log("Option 1");
             this.vehicleDetails=this.objectoRecive.vehicleResponse;
             this.fines=this.objectoRecive.fines;
             this.totalFines=this.objectoRecive.fines.totalDocs;
+            this.currentPage = this.objectoRecive.fines.page;
+            this.totalPages = this.objectoRecive.fines.totalPages;
           }
           if(this.objectoOption == 2){
-            console.log("Option 2");
           this.userDetails=this.objectoRecive.userResponse;
           this.fines=this.objectoRecive.fines;
-          this.totalFines=this.objectoRecive.fines.totalDocs;
+          this.totalFines=this.objectoRecive.fines.meta.totalItems;
+          this.currentPage = this.objectoRecive.fines.meta.currentPage;
+          this.totalPages = this.objectoRecive.fines.meta.totalPages;
           }
           if(this.objectoOption == 4){
             this.fines=this.objectoRecive.fines;
@@ -61,7 +63,6 @@ export class SearchInfoUserComponent implements OnInit {
     }
   }
   loadPoliceDetails(page: number = 1): void {
-    console.log('loadPoliceDetails');
     const identification = this.policeDetails?.identification!;
     this.administrationService.getPoliceDetails(identification, page).subscribe({
       next: (data) => {
@@ -82,6 +83,52 @@ export class SearchInfoUserComponent implements OnInit {
       }
     });
   }
+
+  loadVehicleDetails(page: number = 1): void {
+    const identification = this.vehicleDetails?.license_plate!;
+    this.administrationService.getVehicleDetails(identification, page).subscribe({
+      next: (data) => {
+        this.administrationService._dataObjectSet = data;
+        this.administrationService._dataOptionSet = 1;
+        this.objectoRecive = data;
+        this.fines = data.fines.docs;
+        this.vehicleDetails=data.vehicleResponse;
+        this.totalFines = data.fines.totalDocs;
+        this.currentPage = data.fines.page;
+        this.totalPages = data.fines.totalPages;
+        this.router.navigate(['/agent/info']).then(() => {
+          window.location.reload();
+        });
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
+  }
+  // En el componente SearchInfoUserComponent 
+  loadUserDetails(page: number = 1): void {
+    const dni = this.userDetails?.dni!;
+    this.administrationService.getUserDetails(dni, page).subscribe({
+      next: (data) => {
+        this.administrationService._dataObjectSet = data;
+        this.administrationService._dataOptionSet = 2;
+        this.objectoRecive = data;
+        this.fines = data.fines.data;
+        this.userDetails = data.userResponse;
+        this.totalFines = data.fines.meta.totalItems;
+        this.currentPage = data.fines.meta.currentPage;
+        this.totalPages = data.fines.meta.totalPages;
+        this.router.navigate(['/agent/info']).then(() => {
+          window.location.reload();
+        });
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
+  }
+
+
   goToPreviousPage(): void {
     if (this.currentPage > 1) {
       this.loadPoliceDetails(this.currentPage - 1);
@@ -91,6 +138,28 @@ export class SearchInfoUserComponent implements OnInit {
   goToNextPage(): void {
     if (this.currentPage < this.totalPages) {
       this.loadPoliceDetails(this.currentPage + 1);
+    }
+  }
+  goToPreviousPageVehicle(): void {
+    if (this.currentPage > 1) {
+      this.loadVehicleDetails(this.currentPage - 1);
+    }
+  }
+
+  goToNextPageVehicle(): void {
+    if (this.currentPage < this.totalPages) {
+      this.loadVehicleDetails(this.currentPage + 1);
+    }
+  }
+  goToPreviousPageUser(): void {
+    if (this.currentPage > 1) {
+      this.loadUserDetails(this.currentPage - 1);
+    }
+  }
+  
+  goToNextPageUser(): void {
+    if (this.currentPage < this.totalPages) {
+      this.loadUserDetails(this.currentPage + 1);
     }
   }
 }

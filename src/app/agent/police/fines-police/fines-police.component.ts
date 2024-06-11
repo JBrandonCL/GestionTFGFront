@@ -15,7 +15,8 @@ import { AgentFinesInterface } from '../../../interface/agentFines.interface';
 export class FinesPoliceComponent implements OnInit{
   router = inject(Router);
   fines: AgentFinesInterface[] = [];
-
+  page: number = 1;
+  finesFilter: any = { createdAt: '' };
   constructor(private storageService:StorageService, private administrationService:AdministrationService,private location: Location) { }
   ngOnInit(): void {
     //Si no tiene iniciada una sesión se le redirige al login
@@ -36,5 +37,8 @@ export class FinesPoliceComponent implements OnInit{
         }
       });
     }
+  }
+  cleanFilter(){
+    this.finesFilter = { createdAt: '' };
   }
 }

@@ -30,7 +30,6 @@ export class HeaderComponent implements OnInit {
 
   }
   async logout(): Promise<void> {
-    console.log('logout');
     this.storageService.logout();
     this.storageService.changeRole(null);
     this.router.navigate(['/login']);
@@ -83,7 +82,6 @@ export class HeaderComponent implements OnInit {
       case 4: {  
         this.administrationService.getPoliceDetails(toSearch).subscribe({
           next: (data) => {
-            console.log(data);
             this.administrationService._dataObjectSet = data;
             this.administrationService._dataOptionSet = 4;
             this.router.navigate(['/agent/info']).then(() => {

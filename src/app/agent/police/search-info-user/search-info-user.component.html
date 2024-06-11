@@ -43,6 +43,12 @@
                         <app-datas-fines  [fines]="fines" [option]="objectoOption"></app-datas-fines>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-between">
+                      <button (click)="goToPreviousPageVehicle()"class="btn btn-primary">Anterior</button>
+                      <button (click)="goToNextPageVehicle()" class="btn btn-primary">Siguiente</button>
+                    </div>
+                  </div>
             </div>
         </div>
     </div>
@@ -81,6 +87,12 @@
                         <app-datas-fines  [fines]="fines" [option]="objectoOption"></app-datas-fines>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-between">
+                      <button (click)="goToPreviousPageUser()" [disabled]="currentPage === 1" class="btn btn-primary">Anterior</button>
+                      <button (click)="goToNextPageUser()"[disabled]="currentPage === totalPages" class="btn btn-primary">Siguiente</button>
+                    </div>
+                  </div>
             </div>
         </div>
     </div>

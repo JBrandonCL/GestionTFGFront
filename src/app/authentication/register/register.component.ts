@@ -12,7 +12,7 @@ import { StorageService } from '../../services/storage/storage.service';
 })
 export class RegisterComponent {
   erros: string = '';
-
+   usernamePattern = /^(?!police\.).*$/;
   constructor(private authService: AuthService, private router: Router, private storageService: StorageService) {}
 
   registerForm = new FormGroup({
@@ -23,7 +23,7 @@ export class RegisterComponent {
     direction: new FormControl('', [Validators.required]),
     zipcode: new FormControl('', [Validators.required]),
     town: new FormControl('', [Validators.required]),
-    username: new FormControl('', [Validators.required]),
+    username: new FormControl('', [Validators.required,Validators.pattern(this.usernamePattern)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
@@ -32,6 +32,11 @@ export class RegisterComponent {
     this.erros = '';
     if (this.registerForm.valid) {
       const formValue = this.registerForm.value;
+      if(!this.usernamePattern.test(formValue.username!)){
+        this.erros = 'Username must not start with "police."';
+        this.registerForm.get('username')?.setValue('');
+        return;
+      }
       const data: UserRegisterInterface = {
         name: formValue.name!,
         lastname1: formValue.lastname1!,
@@ -54,6 +59,16 @@ export class RegisterComponent {
           this.erros = error.error.message;
         }
       });
+    }else{
+      if(!this.usernamePattern.test(this.registerForm.value.username!)){
+        console.log("ENTRA EN EL IF ");
+        this.erros = 'Username must not start with "police."';
+        this.registerForm.get('username')?.setValue('');
+        return;
+      }
+      console.log(this.registerForm.value.username);
+      this.registerForm.markAllAsTouched();
+      this.erros = 'Please fill out all the fields';
     }
   }
 }
