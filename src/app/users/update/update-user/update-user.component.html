@@ -3,26 +3,23 @@
       <div class="card-header bg-primary text-white text-center">
         <h4>Registrar Usuario</h4>
       </div>
-      <div *ngIf="erros" class="alert alert-danger" role="alert">
-        {{ erros }}
+      <div *ngIf="errors" class="alert alert-danger" role="alert">
+        {{ errors }}
       </div>
       <div class="card-body">
-        <form [formGroup]="registerForm" (ngSubmit)="submit()">
+        <form [formGroup]="updateUserForm" (ngSubmit)="submit()">
           <div class="mb-3">
             <label for="name" class="form-label text-primary">Nombre</label>
-            <input type="text" class="form-control" id="name" formControlName="name">
-            <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched">
-              <span *ngIf="registerForm.get('name')?.hasError('required')" class="text-danger">
-                (Este campo es requerido)
-              </span>
-            </div>
+            <small class="ms-5 text-danger">Este campo no es modificable</small>
+            <input type="text" class="form-control" id="name" formControlName="name" >
           </div>
   
           <div class="mb-3">
             <label for="lastname1" class="form-label text-primary">Primer Apellido</label>
+            <small class="ms-5 text-danger">Este campo no es modificable</small>
             <input type="text" class="form-control" id="lastname1" formControlName="lastname1">
-            <div *ngIf="registerForm.get('lastname1')?.invalid && registerForm.get('lastname1')?.touched">
-              <span *ngIf="registerForm.get('lastname1')?.hasError('required')" class="text-danger">
+            <div *ngIf="updateUserForm.get('lastname1')?.invalid && updateUserForm.get('lastname1')?.touched">
+              <span *ngIf="updateUserForm.get('lastname1')?.hasError('required')" class="text-danger">
                 (Este campo es requerido)
               </span>
             </div>
@@ -30,9 +27,10 @@
   
           <div class="mb-3">
             <label for="lastname2" class="form-label text-primary">Segundo Apellido</label>
+            <small class="ms-5 text-danger">Este campo no es modificable</small>
             <input type="text" class="form-control" id="lastname2" formControlName="lastname2">
-            <div *ngIf="registerForm.get('lastname2')?.invalid && registerForm.get('lastname2')?.touched">
-              <span *ngIf="registerForm.get('lastname2')?.hasError('required')" class="text-danger">
+            <div *ngIf="updateUserForm.get('lastname2')?.invalid && updateUserForm.get('lastname2')?.touched">
+              <span *ngIf="updateUserForm.get('lastname2')?.hasError('required')" class="text-danger">
                 (Este campo es requerido)
               </span>
             </div>
@@ -40,9 +38,10 @@
   
           <div class="mb-3">
             <label for="dni" class="form-label text-primary">DNI</label>
+            <small class="ms-5 text-danger">Este campo no es modificable</small>
             <input type="text" class="form-control" id="dni" formControlName="dni">
-            <div *ngIf="registerForm.get('dni')?.invalid && registerForm.get('dni')?.touched">
-              <span *ngIf="registerForm.get('dni')?.hasError('required')" class="text-danger">
+            <div *ngIf="updateUserForm.get('dni')?.invalid && updateUserForm.get('dni')?.touched">
+              <span *ngIf="updateUserForm.get('dni')?.hasError('required')" class="text-danger">
                 (Este campo es requerido)
               </span>
             </div>
@@ -51,8 +50,8 @@
           <div class="mb-3">
             <label for="direction" class="form-label text-primary">Dirección</label>
             <input type="text" class="form-control" id="direction" formControlName="direction">
-            <div *ngIf="registerForm.get('direction')?.invalid && registerForm.get('direction')?.touched">
-              <span *ngIf="registerForm.get('direction')?.hasError('required')" class="text-danger">
+            <div *ngIf="updateUserForm.get('direction')?.invalid && updateUserForm.get('direction')?.touched">
+              <span *ngIf="updateUserForm.get('direction')?.hasError('required')" class="text-danger">
                 (Este campo es requerido)
               </span>
             </div>
@@ -61,8 +60,8 @@
           <div class="mb-3">
             <label for="zipcode" class="form-label text-primary">Código Postal</label>
             <input type="text" class="form-control" id="zipcode" formControlName="zipcode">
-            <div *ngIf="registerForm.get('zipcode')?.invalid && registerForm.get('zipcode')?.touched">
-              <span *ngIf="registerForm.get('zipcode')?.hasError('required')" class="text-danger">
+            <div *ngIf="updateUserForm.get('zipcode')?.invalid && updateUserForm.get('zipcode')?.touched">
+              <span *ngIf="updateUserForm.get('zipcode')?.hasError('required')" class="text-danger">
                 (Este campo es requerido)
               </span>
             </div>
@@ -71,8 +70,8 @@
           <div class="mb-3">
             <label for="town" class="form-label text-primary">Ciudad</label>
             <input type="text" class="form-control" id="town" formControlName="town">
-            <div *ngIf="registerForm.get('town')?.invalid && registerForm.get('town')?.touched">
-              <span *ngIf="registerForm.get('town')?.hasError('required')" class="text-danger">
+            <div *ngIf="updateUserForm.get('town')?.invalid && updateUserForm.get('town')?.touched">
+              <span *ngIf="updateUserForm.get('town')?.hasError('required')" class="text-danger">
                 (Este campo es requerido)
               </span>
             </div>
@@ -81,8 +80,8 @@
           <div class="mb-3">
             <label for="username" class="form-label text-primary">Nombre de Usuario</label>
             <input type="text" class="form-control" id="username" formControlName="username">
-            <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
-              <span *ngIf="registerForm.get('username')?.hasError('required')" class="text-danger">
+            <div *ngIf="updateUserForm.get('username')?.invalid && updateUserForm.get('username')?.touched">
+              <span *ngIf="updateUserForm.get('username')?.hasError('required')" class="text-danger">
                 (Este campo es requerido)
               </span>
             </div>
@@ -91,11 +90,11 @@
           <div class="mb-3">
             <label for="email" class="form-label text-primary">Correo Electrónico</label>
             <input type="email" class="form-control" id="email" formControlName="email">
-            <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
-              <span *ngIf="registerForm.get('email')?.hasError('required')" class="text-danger">
+            <div *ngIf="updateUserForm.get('email')?.invalid && updateUserForm.get('email')?.touched">
+              <span *ngIf="updateUserForm.get('email')?.hasError('required')" class="text-danger">
                 (Este campo es requerido)
               </span>
-              <span *ngIf="registerForm.get('email')?.hasError('email')" class="text-danger">
+              <span *ngIf="updateUserForm.get('email')?.hasError('email')" class="text-danger">
                 (Correo electrónico no válido)
               </span>
             </div>
@@ -104,16 +103,22 @@
           <div class="mb-3">
             <label for="password" class="form-label text-primary">Contraseña</label>
             <input type="password" class="form-control" id="password" formControlName="password">
-            <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
-              <span *ngIf="registerForm.get('password')?.hasError('required')" class="text-danger">
+            <div *ngIf="updateUserForm.get('password')?.invalid && updateUserForm.get('password')?.touched">
+              <span *ngIf="updateUserForm.get('password')?.hasError('required')" class="text-danger">
                 (Este campo es requerido)
               </span>
-              <span *ngIf="registerForm.get('password')?.hasError('minlength')" class="text-danger">
+              <span *ngIf="updateUserForm.get('password')?.hasError('minlength')" class="text-danger">
                 (La contraseña debe tener al menos 6 caracteres)
               </span>
             </div>
           </div>
-  
+          <div class="mb-3">
+          <label for="isDeleted">Borrar cuenta :</label>
+          <select id="isDeleted" formControlName="isDeleted" class="form-select">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
           <div class="text-center">
             <button type="submit" class="btn btn-primary">Registrar</button>
           </div>

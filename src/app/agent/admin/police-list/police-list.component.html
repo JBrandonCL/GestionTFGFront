@@ -1,0 +1,44 @@
+<div class="m-3">
+    <div>
+        <label class="form-label">DNI</label>
+        <input type="text" class="form-control" [(ngModel)]="listPoliceFilter.dni" placeholder="Nombre del policia">
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover my-5">
+            <thead class="table-dark">
+                <tr>
+                    <th>Identification</th>
+                    <th>Name</th>
+                    <th>Lastname1</th>
+                    <th>Lastname2</th>
+                    <th>DNI</th>
+                    <th>Sigue en activo</th>
+                    <th>Email</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let policeInfo of listPolice | filterBy:listPoliceFilter | paginate: { itemsPerPage: 10, currentPage: page }">
+                    <td>{{policeInfo.identification}}</td>
+                    <td>{{policeInfo.name}}</td>
+                    <td>{{policeInfo.lastname1}}</td>
+                    <td>{{policeInfo.lastname2}}</td>
+                    <td>{{policeInfo.dni}}</td>
+                    <td>{{policeInfo.isDeleted==false?'activo':'inactivo'}}</td>
+                    <td>{{policeInfo.email}}</td>
+                    <td>
+                        <button class="btn btn-primary">Editar</button>
+                        <button class="btn btn-danger" (click)="deleteAgent(policeInfo.identification)"
+                            *ngIf="policeInfo.isDeleted==false">Dar de baja</button>
+                        <button class="btn btn-danger" (click)="upAgent(policeInfo.identification)"
+                            *ngIf="policeInfo.isDeleted==true">Dar de alta</button>
+                        <button class="btn btn-info" (click)="getAgentFines(policeInfo.identification)">Ver sus
+                            multas</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination-controls (pageChange)="page = $event"  previousLabel="Anterior"
+        nextLabel="Siguiente"></pagination-controls>
+    </div>
+</div>

@@ -25,7 +25,6 @@ export class DetailsFinesComponent implements OnInit{
     } else {
       this.finesService.getDetailGestion(this.fineId).subscribe({
         next: (response) => {
-          console.log("ENTRA COMO AGENTE");
           this.fineDetails = response;
           this.role="police"
         },

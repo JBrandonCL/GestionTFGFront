@@ -21,6 +21,13 @@ import { PostfineComponent } from './agent/police/postfine/postfine.component';
 import { SearchInfoUserComponent } from './agent/police/search-info-user/search-info-user.component';
 import { DatasFinesComponent } from './agent/datas-fines/datas-fines.component';
 import { UpdateFineComponent } from './agent/update-fine/update-fine.component';
+import { UpdateUserComponent } from './users/update/update-user/update-user.component';
+import { BoardComponent } from './agent/admin/board/board.component';
+import { PoliceListComponent } from './agent/admin/police-list/police-list.component';
+import { AdministrationListComponent } from './agent/admin/administration-list/administration-list.component';
+import { UsersListComponent } from './agent/admin/users-list/users-list.component';
+import { FilterPipeModule } from 'ngx-filter-pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -37,14 +44,21 @@ import { UpdateFineComponent } from './agent/update-fine/update-fine.component';
     PostfineComponent,
     SearchInfoUserComponent,
     DatasFinesComponent,
-    UpdateFineComponent, 
+    UpdateFineComponent,
+    UpdateUserComponent,
+    BoardComponent,
+    PoliceListComponent,
+    AdministrationListComponent,
+    UsersListComponent, 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FilterPipeModule,
+    NgxPaginationModule
   ],
   providers: [CookieService,{
     provide: HTTP_INTERCEPTORS,

@@ -1,0 +1,46 @@
+<div class="m-3">
+    <div>
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-control" [(ngModel)]="listUsersFilter.fullName" placeholder="Nombre del usuario">
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover my-5  table-responsive">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th>DNI</th>
+                    <th>Dirección</th>
+                    <th>Codigo postal</th>
+                    <th>Ciudad</th>
+                    <th>Tiene multas</th>
+                    <th>Email</th>
+                    <th>Estado de la cuenta</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let userInfo of listUsers | filterBy:listUsersFilter | paginate: { itemsPerPage: 10, currentPage: page }">
+                    <td>{{userInfo.fullName}}</td>
+                    <td>{{userInfo.dni}}</td>
+                    <td>{{userInfo.direction}}</td>
+                    <td>{{userInfo.zipcode}}</td>
+                    <td>{{userInfo.town}}</td>
+                    <td>{{userInfo.hasFines?'Sí':'No'}}</td>
+                    <td>{{userInfo.email}}</td>
+                    <td>{{userInfo.isDeleted?'Baja':'Activa'}}</td>
+                    <td>
+                        <button [routerLink]="['/update/admin', userInfo.dni]" class="btn btn-primary">Editar</button>
+
+                        <button class="btn btn-danger" (click)="deleteUser(userInfo.dni)"
+                            *ngIf="userInfo.isDeleted==false">Dar de baja</button>
+                        <button class="btn btn-danger" (click)="upUser(userInfo.dni)"
+                            *ngIf="userInfo.isDeleted==true">Dar de alta</button>
+                        <button class="btn btn-info" (click)="getUserFines(userInfo.dni)">Ver sus multas</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination-controls (pageChange)="page = $event"  previousLabel="Anterior"
+        nextLabel="Siguiente"></pagination-controls>
+    </div>
+</div>

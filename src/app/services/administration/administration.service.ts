@@ -35,6 +35,37 @@ export class AdministrationService {
   public getMyFines():Observable<any> {
     return this.http.get(environment.apiUrl + "/police/me/ticket",httpOptions);
   }
+  public validateAdmin():Observable<any>{
+    return this.http.get(environment.apiUrl + "/police/validate/admin",httpOptions);
+  }
+  public getPoliceDetails(identification: string, page: number = 1, limit: number = 10): Observable<any> {
+  return this.http.get(`${environment.apiUrl}/police/police/info/${identification}?limit=${limit}&page=${page}`, httpOptions);
+  }
+  public getAllPolice():Observable<any>{
+    return this.http.get(environment.apiUrl + "/police/allPolice",httpOptions);
+  }
+  public getAllUsers():Observable<any>{
+    return this.http.get(environment.apiUrl + "/police/allUsers",httpOptions);
+  }
+  public deleteAgent(id:string):Observable<any>{
+    return this.http.get(environment.apiUrl + "/police/removeAgent/"+id,httpOptions);
+  }
+  public upAgent(id:string):Observable<any>{
+    return this.http.get(environment.apiUrl + "/police/upAgent/"+id,httpOptions);
+  }
+  public deleteUser(id:string):Observable<any>{
+    return this.http.get(environment.apiUrl + "/police/removeUser/"+id,httpOptions);
+  }
+  public upUser(id:string):Observable<any>{
+    return this.http.get(environment.apiUrl + "/police/upUser/"+id,httpOptions);
+  }
+  public detailsUser(id:string):Observable<any>{
+    return this.http.get(environment.apiUrl + "/police/update/user/"+id,httpOptions);
+  }
+  public updateUser(id:string,data:any):Observable<any>{
+    return this.http.patch(environment.apiUrl + "/police/update/user/"+id,data,httpOptions);
+  }
+
   get _dataObjectGet(): any {
     const data = window.sessionStorage.getItem(this.dataObjectKey);
     return data ? JSON.parse(data) : null;

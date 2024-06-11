@@ -9,7 +9,7 @@ import { AgentFinesInterface } from '../../interface/agentFines.interface';
 export class DatasFinesComponent implements OnInit{
   @Input() fines: any;
   @Input() option:number=0;
-  finesShow: AgentFinesInterface[] = [];
+  finesShow: any[] = [];
 
 ngOnInit(): void {
   if(this.option == 1){
@@ -17,6 +17,9 @@ ngOnInit(): void {
   } 
   if(this.option == 2){
     this.finesShow = this.fines.data;
+  }
+  if(this.option == 4){
+    this.finesShow = this.fines.docs;
   }
 }
 

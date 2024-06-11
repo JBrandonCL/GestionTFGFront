@@ -11,12 +11,10 @@ export class AuthService {
   url: string = environment.apiUrl + '/auth/login';
   constructor(private http: HttpClient) { }
 
-  /**
-   * Se envia la interfaz de usuario para loguearse
-   * @param data UserLoginInterface
-   * @returns Jwt token en caso correcto o error
-   */
   public login(data:UserLoginInterface): Observable<any> {
     return this.http.post(this.url, data, httpOptions);
+  }
+  public register(data:UserLoginInterface): Observable<any> {
+    return this.http.post(environment.apiUrl + '/auth/register', data, httpOptions);
   }
 }

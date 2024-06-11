@@ -87,3 +87,43 @@
     
     
 }
+@if(this.objectoOption==4){
+    <div class="container my-5">
+        <div class="card border-primary shadow-lg">
+            <div class="card-header bg-primary text-white text-center">
+                <h4>Información sobre un Policía</h4>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <h5 class="card-title text-primary">Detalles del policía</h5>
+                    <div class="col-md-4">
+                        <p class="card-text"><strong>Identificación:</strong> {{ policeDetails?.identification }}</p>
+                        <p class="card-text"><strong>Nombre:</strong> {{ policeDetails?.name }}</p>
+                        <p class="card-text"><strong>Primer Apellido:</strong> {{ policeDetails?.lastname1 }}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="card-text"><strong>Segundo Apellido:</strong> {{ policeDetails?.lastname2 }}</p>
+                        <p class="card-text"><strong>DNI:</strong> {{ policeDetails?.dni }}</p>
+                        <p class="card-text"><strong>¿Está eliminado?:</strong> {{ policeDetails?.isDeleted ? 'Sí' : 'No' }}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="card-text"><strong>Correo electrónico:</strong> {{ policeDetails?.email }}</p>
+                    </div>
+                </div>
+                <hr>    
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="card-title text-primary">Multas asociadas</h5>
+                        <app-datas-fines  [fines]="fines" [option]="objectoOption"></app-datas-fines>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-between">
+                      <button (click)="goToPreviousPage()"class="btn btn-primary">Anterior</button>
+                      <button (click)="goToNextPage()" class="btn btn-primary">Siguiente</button>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+}

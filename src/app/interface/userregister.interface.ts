@@ -1,14 +1,13 @@
-export interface UserDetailsInterface {
+export interface UserRegisterInterface {
     name: string;
     lastname1: string;
     lastname2: string;
     dni: string;
     direction: string;
-    zipcode: string;
+    zipcode: number;
     town: string;
-    hasFines: boolean;
+    username: string;
     email: string;
-    fullName: string;
-    isDeleted:string;
-  }
-  
+    password: string;
+    isDeleted?: boolean;
+}

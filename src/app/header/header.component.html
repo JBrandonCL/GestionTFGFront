@@ -22,7 +22,7 @@
             </li>
           </ng-container>
           <!-- Condicional para el rol de policía -->
-          <ng-container *ngIf="role === 'POLICE'">
+          <ng-container *ngIf="role === 'POLICE'|| role=='ADMIN' || role=='ADMINISTRACION' ">
             <li class="nav-item">
               <a class="nav-link" [routerLink]="['agent/fines']">Ver mis multas</a>
             </li>
@@ -37,6 +37,9 @@
                   <option value="1">Informacion vehiculo</option>
                   <option value="2">Informacion persona</option>
                   <option value="3">Informacion multa</option>
+                  @if(role === 'ADMIN' || role === 'ADMINISTRACION'){
+                  <option value="4">Informacion agente</option>
+                  }
                 </select>
                 <input type="text" class="form-control me-2" id="Search" placeholder="Buscar..." aria-label="Search"
                   aria-describedby="button-addon5" formControlName= "Search">
@@ -51,7 +54,16 @@
       </ul>
       <ul class="navbar-nav ms-auto">
         <li class="nav-item" *ngIf="isLoggedIn">
-          <a class="nav-link" href="#">{{name}}</a>
+          @if(role === 'ADMIN'){
+          <a class="nav-link" [routerLink]="['admin']">Panel de administracion</a>
+          }
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn">
+          @if(role === 'USER'){
+          <a class="nav-link" [routerLink]="['update']">{{name}}</a>
+          }@else {
+            <a class="nav-link" href="#">{{name}}</a>
+          }
         </li>
         <li class="nav-item" *ngIf="isLoggedIn">
           <button class="btn btn-outline-danger" (click)="logout()">Cerrar Sesión</button>
