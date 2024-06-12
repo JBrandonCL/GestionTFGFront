@@ -1,0 +1,41 @@
+<div class="container-fluid">
+  <div class="row py-3">
+    <div class="col-md-6">
+      <label class="form-label">Matricula</label>
+      <input type="text" class="form-control" [(ngModel)]="finesFilter.linces_plate" placeholder="Matricula del vehiculo">
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">DNI del dueño</label>
+      <input type="text" class="form-control" [(ngModel)]="finesFilter.userId" placeholder="DNI del dueño">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-6 mb-4"
+      *ngFor="let fine of fines| filterBy:{'linces_plate':finesFilter.linces_plate,'userId':finesFilter.userId} | paginate: { itemsPerPage: 10, currentPage: page }">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+              <div class="ms-3">
+                <p class="fw-bold mb-1">Matricula : {{fine.linces_plate}}</p>
+                <p class="fw-bold mb-1">Motivo de la multa : {{fine.reason}}</p>
+                <p class="fw-bold mb-1">DNI del dueño : {{fine.userId}}</p>
+                <p class="text-muted mb-0">Fecha de la multa : {{fine.createdAt | date:'short' }}</p>
+                <p class="text-muted mb-0">Importe de la multa : {{fine.finesImport }}</p>
+              </div>
+            </div>
+            <span class="badge bg-success text-white">@if(fine.isPaid==false){Sin Pagar}@else {Pagada}</span>
+          </div>
+        </div>
+        <div class="card-footer border-0 bg-body p-2 d-flex justify-content-around">
+          <a [routerLink]="['finesDetails',fine.fineId]" class="btn btn-link m-0 text-reset" role="button"
+            data-ripple-color="primary" data-mdb-ripple-init>Detalles de la multa<i
+              class="fas fa-envelope ms-2 "></i></a>
+          <button class="btn btn-primary" [routerLink]="['update',fine.fineId]">ACTUALIZAR</button>
+        </div>
+      </div>
+    </div>
+    <pagination-controls (pageChange)="page = $event" previousLabel="Anterior"
+      nextLabel="Siguiente"></pagination-controls>
+  </div>
+</div>

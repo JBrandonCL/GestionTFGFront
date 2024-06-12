@@ -14,7 +14,7 @@ export class UsersListComponent implements OnInit{
   page: number = 1;
   router = inject(Router);
   listUsers:UserDetailsInterface[] = [];
-  listUsersFilter: any = { fullName: '' };
+  listUsersFilter: any = { fullName: '' ,dni:''};
   constructor(private readonly storageService:StorageService,private readonly administrationService:AdministrationService,private location: Location) { }
 
   ngOnInit(): void {

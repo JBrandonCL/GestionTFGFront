@@ -44,6 +44,9 @@ export class AdministrationService {
   public getAllPolice():Observable<any>{
     return this.http.get(environment.apiUrl + "/police/allPolice",httpOptions);
   }
+  public getAllFines():Observable<any>{
+    return this.http.get(environment.apiUrl + "/police/admin/allFines",httpOptions);
+  }
   public getAllUsers():Observable<any>{
     return this.http.get(environment.apiUrl + "/police/allUsers",httpOptions);
   }

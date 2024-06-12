@@ -1,7 +1,13 @@
 <div class="m-3">
-    <div>
-        <label class="form-label">Nombre</label>
-        <input type="text" class="form-control" [(ngModel)]="listUsersFilter.fullName" placeholder="Nombre del usuario">
+    <div class="form-group row">
+        <div class="col">
+            <label class="form-label">Nombre</label>
+            <input type="text" class="form-control" [(ngModel)]="listUsersFilter.fullName" placeholder="Nombre del usuario">
+        </div>
+        <div class="col">
+            <label class="form-label">DNI</label>
+            <input type="text" class="form-control" [(ngModel)]="listUsersFilter.dni" placeholder="DNI del usuario">
+        </div>
     </div>
     <div class="table-responsive">
         <table class="table table-striped table-hover my-5  table-responsive">
@@ -19,7 +25,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let userInfo of listUsers | filterBy:listUsersFilter | paginate: { itemsPerPage: 10, currentPage: page }">
+                <tr
+                    *ngFor="let userInfo of listUsers | filterBy:{'fullName':listUsersFilter.fullName,'dni':listUsersFilter.dni} | paginate: { itemsPerPage: 10, currentPage: page }">
                     <td>{{userInfo.fullName}}</td>
                     <td>{{userInfo.dni}}</td>
                     <td>{{userInfo.direction}}</td>
@@ -40,7 +47,7 @@
                 </tr>
             </tbody>
         </table>
-        <pagination-controls (pageChange)="page = $event"  previousLabel="Anterior"
-        nextLabel="Siguiente"></pagination-controls>
+        <pagination-controls (pageChange)="page = $event" previousLabel="Anterior"
+            nextLabel="Siguiente"></pagination-controls>
     </div>
 </div>

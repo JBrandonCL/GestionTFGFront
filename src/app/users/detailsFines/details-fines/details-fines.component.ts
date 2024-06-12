@@ -12,6 +12,7 @@ import { Location } from '@angular/common';
   styleUrl: './details-fines.component.scss'
 })
 export class DetailsFinesComponent implements OnInit{
+  isLoading = true;
   role:string="";
   fineDetails: FinesDetailsInterface | null = null;
   router = inject(Router);
@@ -28,7 +29,8 @@ export class DetailsFinesComponent implements OnInit{
       this.finesService.getDetailGestion(this.fineId).subscribe({
         next: (response) => {
           this.fineDetails = response;
-          this.role="police"
+          this.role="police";
+          this.isLoading = false;
         },
         error: (error) => {
           this.finesService.getDetailFine(this.fineId).subscribe({
@@ -36,6 +38,7 @@ export class DetailsFinesComponent implements OnInit{
               this.role="user"
               this.storateService.setRole("USER");
               this.fineDetails = response;
+              this.isLoading = false;
             },
             error: (error) => {
               this.location.back();

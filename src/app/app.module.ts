@@ -24,11 +24,11 @@ import { UpdateFineComponent } from './agent/update-fine/update-fine.component';
 import { UpdateUserComponent } from './users/update/update-user/update-user.component';
 import { BoardComponent } from './agent/admin/board/board.component';
 import { PoliceListComponent } from './agent/admin/police-list/police-list.component';
-import { AdministrationListComponent } from './agent/admin/administration-list/administration-list.component';
 import { UsersListComponent } from './agent/admin/users-list/users-list.component';
 import { FilterPipeModule } from 'ngx-filter-pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { UpdatePoliceComponent } from './agent/admin/update-police/update-police.component';
+import { FinesListComponent } from './agent/admin/fines-list/fines-list.component';
 
 @NgModule({
   declarations: [
@@ -49,9 +49,9 @@ import { UpdatePoliceComponent } from './agent/admin/update-police/update-police
     UpdateUserComponent,
     BoardComponent,
     PoliceListComponent,
-    AdministrationListComponent,
     UsersListComponent,
-    UpdatePoliceComponent, 
+    UpdatePoliceComponent,
+    FinesListComponent, 
   ],
   imports: [
     BrowserModule,
