@@ -3,6 +3,8 @@ import { StorageService } from '../../../services/storage/storage.service';
 import { FinesService } from '../../../services/fines/fines.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FinesDetailsInterface } from '../../../interface/finesDetails.interface';
+import { AdministrationService } from '../../../services/administration/administration.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-details-fines',
@@ -14,7 +16,7 @@ export class DetailsFinesComponent implements OnInit{
   fineDetails: FinesDetailsInterface | null = null;
   router = inject(Router);
   fineId: string;
-  constructor(private storateService:StorageService, private finesService:FinesService,private route: ActivatedRoute) { 
+  constructor(private storateService:StorageService, private finesService:FinesService,private route: ActivatedRoute,private readonly adminService:AdministrationService,private location: Location) { 
     this.fineId = this.route.snapshot.paramMap.get('fineId')!;
   }
 
@@ -32,12 +34,11 @@ export class DetailsFinesComponent implements OnInit{
           this.finesService.getDetailFine(this.fineId).subscribe({
             next: (response) => {
               this.role="user"
+              this.storateService.setRole("USER");
               this.fineDetails = response;
-              console.log("ENTRA COMO USUARIO");
             },
             error: (error) => {
-              alert('Error al cargar las multas');
-              this.router.navigate(['/fines']);
+              this.location.back();
             }
           });
         }
@@ -47,13 +48,32 @@ export class DetailsFinesComponent implements OnInit{
   downloadPDF(): void {
     this.finesService.downloadPDF(this.fineId).subscribe((data: Blob) => {
       const downloadURL = window.URL.createObjectURL(data);
-      var date= new Date().toISOString().slice(0, 10).replace(/-/g, "");
+      var date= Date.now();
       const link = document.createElement('a');
       link.href = downloadURL;
       link.download = 'multa-'+date+'.pdf';
       link.click();
     }, (error) => {
       console.error('Download failed:', error);
+    });
+  }
+  deleteFine(): void {
+    this.adminService.validateAdmin().subscribe({
+      next: () => {
+        if(confirm('¿Estás seguro de que quieres eliminar la multa?'))
+        this.adminService.deleteFine(this.fineId).subscribe({
+          next: () => {
+            this.router.navigate(['/agent/fines']);
+          },
+          error: () => {
+            alert('Error al eliminar la multa');
+          }
+        });
+      
+      },
+      error: () => {
+        alert('No tienes permisos para eliminar la multa');
+      }
     });
   }
 }

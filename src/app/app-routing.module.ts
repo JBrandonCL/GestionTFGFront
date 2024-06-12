@@ -16,6 +16,7 @@ import { BoardComponent } from './agent/admin/board/board.component';
 import { PoliceListComponent } from './agent/admin/police-list/police-list.component';
 import { AdministrationListComponent } from './agent/admin/administration-list/administration-list.component';
 import { UsersListComponent } from './agent/admin/users-list/users-list.component';
+import { UpdatePoliceComponent } from './agent/admin/update-police/update-police.component';
 
 const routes: Routes =[
   //{ path: "", component: AppComponent, pathMatch: "full" },
@@ -37,6 +38,7 @@ const routes: Routes =[
   { path: "admin/list/police" , component:PoliceListComponent, pathMatch: "full"},
   { path: "admin/list/administration" , component:AdministrationListComponent, pathMatch: "full"},
   { path: "admin/list/users" , component:UsersListComponent, pathMatch: "full"},
+  { path: 'update/admin/police/:dni', component: UpdatePoliceComponent, pathMatch: 'full' },
 ];
 
 @NgModule({

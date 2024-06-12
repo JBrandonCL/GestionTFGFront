@@ -28,6 +28,7 @@ import { AdministrationListComponent } from './agent/admin/administration-list/a
 import { UsersListComponent } from './agent/admin/users-list/users-list.component';
 import { FilterPipeModule } from 'ngx-filter-pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { UpdatePoliceComponent } from './agent/admin/update-police/update-police.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     BoardComponent,
     PoliceListComponent,
     AdministrationListComponent,
-    UsersListComponent, 
+    UsersListComponent,
+    UpdatePoliceComponent, 
   ],
   imports: [
     BrowserModule,

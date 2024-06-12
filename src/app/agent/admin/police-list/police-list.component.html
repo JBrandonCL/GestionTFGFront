@@ -27,7 +27,7 @@
                     <td>{{policeInfo.isDeleted==false?'activo':'inactivo'}}</td>
                     <td>{{policeInfo.email}}</td>
                     <td>
-                        <button class="btn btn-primary">Editar</button>
+                        <button class="btn btn-primary"[routerLink]="['/update/admin/police', policeInfo.identification]">Editar</button>
                         <button class="btn btn-danger" (click)="deleteAgent(policeInfo.identification)"
                             *ngIf="policeInfo.isDeleted==false">Dar de baja</button>
                         <button class="btn btn-danger" (click)="upAgent(policeInfo.identification)"

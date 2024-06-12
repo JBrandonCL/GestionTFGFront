@@ -20,6 +20,7 @@ export class VehiclesComponent implements OnInit{
       this.userService.getMyVehicles().subscribe({
         next: (response) => {
           this.vehicles=response;
+          this.storageService.setRole('USER');
         },
         error: (error) => {
           alert('Error al cargar tus vehiculos');

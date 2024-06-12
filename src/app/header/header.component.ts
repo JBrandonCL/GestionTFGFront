@@ -74,26 +74,34 @@ export class HeaderComponent implements OnInit {
         break;
       }
       case 3: {
-
         this.router.navigate(['/agent/fines/finesDetails', toSearch]).then(() => {
           window.location.reload();
-        }); break;
+        });
+         break;
       }
-      case 4: {  
-        this.administrationService.getPoliceDetails(toSearch).subscribe({
-          next: (data) => {
-            this.administrationService._dataObjectSet = data;
-            this.administrationService._dataOptionSet = 4;
-            this.router.navigate(['/agent/info']).then(() => {
-              window.location.reload();
+      case 4: {
+        this.administrationService.validateAdmin().subscribe({
+          next: () => {
+            this.administrationService.getPoliceDetails(toSearch).subscribe({
+              next: (data) => {
+                this.administrationService._dataObjectSet = data;
+                this.administrationService._dataOptionSet = 4;
+                this.router.navigate(['/agent/info']).then(() => {
+                  window.location.reload();
+                });
+                console.log(data);
+              },
+              error: (error) => {
+                console.log(error);
+                this.erros = error.error.message;
+              }
             });
-            console.log(data);
           },
           error: (error) => {
             console.log(error);
             this.erros = error.error.message;
           }
-        });
+        });  
         break;
       }
       default: { console.log('No se selecciono ninguna opcion'); break; }

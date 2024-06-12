@@ -106,5 +106,7 @@ export class StorageService {
     window.sessionStorage.removeItem(Access_Token);
     window.sessionStorage.removeItem(Expiration_Time);
     window.sessionStorage.removeItem(Role);
+    window.sessionStorage.removeItem(UserName);
+    window.sessionStorage.clear();
   }
 }

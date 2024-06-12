@@ -1,0 +1,100 @@
+<div class="container my-5">
+    <div class="card border-primary shadow-lg">
+      <div class="card-header bg-primary text-white text-center">
+        <h4>Actualizar Policía</h4>
+      </div>
+      <div *ngIf="errors" class="alert alert-danger" role="alert">
+        {{ errors }}
+      </div>
+      <div class="card-body">
+        <form [formGroup]="updatePoliceForm" (ngSubmit)="submit()">
+          <div class="mb-3">
+            <label for="name" class="form-label text-primary">Nombre</label>
+            <small class="ms-5 text-danger">Este campo no es modificable</small>
+            <input type="text" class="form-control" id="name" formControlName="name">
+          </div>
+  
+          <div class="mb-3">
+            <label for="lastname1" class="form-label text-primary">Primer Apellido</label>
+            <small class="ms-5 text-danger">Este campo no es modificable</small>
+            <input type="text" class="form-control" id="lastname1" formControlName="lastname1" >
+            <div *ngIf="updatePoliceForm.get('lastname1')?.invalid && updatePoliceForm.get('lastname1')?.touched">
+              <span *ngIf="updatePoliceForm.get('lastname1')?.hasError('required')" class="text-danger">
+                (Este campo es requerido)
+              </span>
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="lastname2" class="form-label text-primary">Segundo Apellido</label>
+            <small class="ms-5 text-danger">Este campo no es modificable</small>
+            <input type="text" class="form-control" id="lastname2" formControlName="lastname2" >
+            <div *ngIf="updatePoliceForm.get('lastname2')?.invalid && updatePoliceForm.get('lastname2')?.touched">
+              <span *ngIf="updatePoliceForm.get('lastname2')?.hasError('required')" class="text-danger">
+                (Este campo es requerido)
+              </span>
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="dni" class="form-label text-primary">DNI</label>
+            <small class="ms-5 text-danger">Este campo no es modificable</small>
+            <input type="text" class="form-control" id="dni" formControlName="dni" >
+            <div *ngIf="updatePoliceForm.get('dni')?.invalid && updatePoliceForm.get('dni')?.touched">
+              <span *ngIf="updatePoliceForm.get('dni')?.hasError('required')" class="text-danger">
+                (Este campo es requerido)
+              </span>
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="username" class="form-label text-primary">Nombre de Usuario</label>
+            <input type="text" class="form-control" id="username" formControlName="username">
+            <div *ngIf="updatePoliceForm.get('username')?.invalid && updatePoliceForm.get('username')?.touched">
+              <span *ngIf="updatePoliceForm.get('username')?.hasError('required')" class="text-danger">
+                (Este campo es requerido)
+              </span>
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="email" class="form-label text-primary">Correo Electrónico</label>
+            <input type="email" class="form-control" id="email" formControlName="email">
+            <div *ngIf="updatePoliceForm.get('email')?.invalid && updatePoliceForm.get('email')?.touched">
+              <span *ngIf="updatePoliceForm.get('email')?.hasError('required')" class="text-danger">
+                (Este campo es requerido)
+              </span>
+              <span *ngIf="updatePoliceForm.get('email')?.hasError('email')" class="text-danger">
+                (Correo electrónico no válido)
+              </span>
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="password" class="form-label text-primary">Contraseña</label>
+            <input type="password" class="form-control" id="password" formControlName="password">
+            <div *ngIf="updatePoliceForm.get('password')?.invalid && updatePoliceForm.get('password')?.touched">
+              <span *ngIf="updatePoliceForm.get('password')?.hasError('required')" class="text-danger">
+                (Este campo es requerido)
+              </span>
+              <span *ngIf="updatePoliceForm.get('password')?.hasError('minlength')" class="text-danger">
+                (La contraseña debe tener al menos 6 caracteres)
+              </span>
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="isDeleted" class="form-label text-primary">Borrar cuenta :</label>
+            <select id="isDeleted" formControlName="isDeleted" class="form-select">
+              <option value="false">No</option>
+              <option value="true">Sí</option>
+            </select>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

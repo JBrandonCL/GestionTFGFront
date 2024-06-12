@@ -65,7 +65,15 @@ export class AdministrationService {
   public updateUser(id:string,data:any):Observable<any>{
     return this.http.patch(environment.apiUrl + "/police/update/user/"+id,data,httpOptions);
   }
-
+  public deleteFine(id:string):Observable<any>{
+    return this.http.get(environment.apiUrl + "/police/removeFine/"+id,httpOptions);
+  }
+  public getUpdatePoliceDetaisl(id:string):Observable<any>{
+    return this.http.get(environment.apiUrl + "/police/update/police/"+id,httpOptions);
+  }
+  public updatePolice(id:string,data:any):Observable<any>{
+    return this.http.patch(environment.apiUrl + "/police/update/police/"+id,data,httpOptions);
+  }
   get _dataObjectGet(): any {
     const data = window.sessionStorage.getItem(this.dataObjectKey);
     return data ? JSON.parse(data) : null;

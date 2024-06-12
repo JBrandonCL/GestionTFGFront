@@ -34,6 +34,7 @@ export class FinesPoliceComponent implements OnInit{
         },
         error: (error) => {
           alert('Error al cargar las multas');
+          this.location.back();
         }
       });
     }
