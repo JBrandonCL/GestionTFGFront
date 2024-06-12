@@ -24,4 +24,7 @@ export class UserService {
   public updateUser(data: any):Observable<any> {
     return this.http.patch(this.url+"/update", data, httpOptions);
   }
+  public getUserEmail():Observable<any> {
+    return this.http.get(environment.apiUrl + "/users/me/my-email");
+  }
 }
