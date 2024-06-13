@@ -28,7 +28,7 @@ export class PostfineComponent implements OnInit {
     }
   }
   ticketForm = new FormGroup({
-    reason: new FormControl('', [Validators.required,Validators.minLength(3),Validators.pattern(`^\\s*\\S{${3},}\\s*$`)]),
+    reason: new FormControl('', [Validators.required,Validators.minLength(3),Validators.pattern('^\\S(.*\\S)?$')]),
     description: new FormControl(''),
     vehicle: new FormControl('', [Validators.required]),
     finesImport: new FormControl('', [Validators.required]),

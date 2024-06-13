@@ -66,7 +66,14 @@ export class UpdatePoliceComponent implements OnInit {
   submit(){
     this.errors = '';
     if(this.updatePoliceForm.valid){
-      this.updatePoliceForm.value.isDeleted = this.updatePoliceForm.value.isDeleted?true:false;
+      console.log(this.updatePoliceForm.value.isDeleted)  ;
+      var value=this.updatePoliceForm.value.isDeleted!.toString();
+      if(value=="false"){
+        this.updatePoliceForm.value.isDeleted=false;
+      }else{
+        this.updatePoliceForm.value.isDeleted=true;
+      }
+      console.log(this.updatePoliceForm.value.isDeleted)  ;
       this.administrationService.updatePolice(this.UserId!,this.updatePoliceForm.value).subscribe({
         next:(response)=>{
           console.log(response);

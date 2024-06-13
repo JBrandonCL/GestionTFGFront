@@ -5,8 +5,8 @@
       <input type="text" class="form-control" [(ngModel)]="finesFilter.linces_plate" placeholder="Matricula del vehiculo">
     </div>
     <div class="col-md-6">
-      <label class="form-label">DNI del dueño</label>
-      <input type="text" class="form-control" [(ngModel)]="finesFilter.userId" placeholder="DNI del dueño">
+      <label class="form-label">DNI de la persona</label>
+      <input type="text" class="form-control" [(ngModel)]="finesFilter.userId" placeholder="DNI de la persona">
     </div>
   </div>
   <div class="row">
@@ -28,10 +28,10 @@
           </div>
         </div>
         <div class="card-footer border-0 bg-body p-2 d-flex justify-content-around">
-          <a [routerLink]="['finesDetails',fine.fineId]" class="btn btn-link m-0 text-reset" role="button"
+          <a [routerLink]="['/agent/fines/finesDetails', fine.fineId]" class="btn btn-link m-0 text-reset" role="button"
             data-ripple-color="primary" data-mdb-ripple-init>Detalles de la multa<i
               class="fas fa-envelope ms-2 "></i></a>
-          <button class="btn btn-primary" [routerLink]="['update',fine.fineId]">ACTUALIZAR</button>
+          <button class="btn btn-primary" [routerLink]="['/agent/fines/update', fine.fineId]">ACTUALIZAR</button>
         </div>
       </div>
     </div>

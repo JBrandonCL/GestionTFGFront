@@ -11,6 +11,7 @@ import { UserService } from '../../../services/users/user.service';
   styleUrl: './fines.component.scss'
 })
 export class FinesComponent implements OnInit {
+  page: number = 1;
   router = inject(Router);
   fines: FinesInterface[] = [];
   constructor(private storageService: StorageService, private finesService: FinesService, private readonly userService: UserService

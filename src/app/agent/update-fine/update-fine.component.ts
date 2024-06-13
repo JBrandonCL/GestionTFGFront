@@ -23,7 +23,7 @@ export class UpdateFineComponent implements OnInit{
     this.fineId = this.route.snapshot.paramMap.get('fineId')!;
   }
   ticketForm = new FormGroup({
-    reason: new FormControl('', [Validators.required,Validators.minLength(3),Validators.pattern(`^\\s*\\S{${3},}\\s*$`)]),
+    reason: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^\\S(.*\\S)?$')]),
     description: new FormControl(''),
     vehicle: new FormControl('', [Validators.required]),
     finesImport: new FormControl('', [Validators.required]),
@@ -59,7 +59,6 @@ export class UpdateFineComponent implements OnInit{
     }
   }
   submit(){
-    console.log("ENTRA BIEN en el submit");
     this.erros='';
     if(this.ticketForm.valid){
       const data = {
@@ -77,7 +76,6 @@ export class UpdateFineComponent implements OnInit{
       fine.finesImport=data.finesImport;
       this.administrationService.updateFine(this.fineId,data).subscribe({
         next: () => {
-          console.log("ENTRA BIEN en el next");
           this.router.navigate(['/agent/fines']);
         },
         error: (error) => {
